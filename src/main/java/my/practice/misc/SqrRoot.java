@@ -45,5 +45,6 @@ public class SqrRoot {
         System.err.println(isPerfectSquare(16));
         System.err.println(isPerfectSquare(1));
         System.err.println(isPerfectSquare(2));
+        System.err.println(1230 & 1235);
     }
 }

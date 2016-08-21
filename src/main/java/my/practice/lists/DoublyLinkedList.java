@@ -12,8 +12,16 @@ public class DoublyLinkedList {
         return head == null;
     }
 
+    public ListNode head() {
+        return head;
+    }
+
     public void addFirst(int val) {
         ListNode node = new ListNode(val);
+        addFirst(node);
+    }
+
+    public void addFirst(ListNode node) {
         if (!isEmpty()) {
             node.next = head;
             head.prev = node;
@@ -32,6 +40,10 @@ public class DoublyLinkedList {
 
     public void addLast(int val) {
         ListNode node = new ListNode(val);
+        addLast(node);
+    }
+
+    public void addLast(ListNode node) {
         if (!isEmpty()) {
             node.prev = last;
             last.next = node;
@@ -55,7 +67,9 @@ public class DoublyLinkedList {
     public void removeFirst() {
         if (isEmpty()) return;
         middle = size % 2 == 0 ? middle.next : middle;
-        head.next.prev = null;
+        if (head.next != null) {
+            head.next.prev = null;
+        }
         head = head.next;
         size--;
     }
@@ -63,7 +77,9 @@ public class DoublyLinkedList {
     public void removeLast() {
         if (isEmpty()) return;
         middle = size % 2 == 0 ? middle : middle.prev;
-        last.prev.next = null;
+        if (last.prev != null) {
+            last.prev.next = null;
+        }
         last = last.prev;
         size--;
     }
@@ -73,8 +89,7 @@ public class DoublyLinkedList {
         if (node == head) {
             removeFirst();
             return;
-        }
-        if (node == last) {
+        } else if (node == last) {
             removeLast();
             return;
         }
@@ -138,7 +153,7 @@ public class DoublyLinkedList {
         dll.addLast(5);
         System.err.println(dll.getMiddle());
         System.err.println(toString(dll));
-        dll.removeFirst();;
+        dll.removeFirst();
         System.err.println(dll.getMiddle());
         System.err.println(toString(dll));
         dll.removeMiddle();

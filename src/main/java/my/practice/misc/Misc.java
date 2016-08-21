@@ -1,5 +1,10 @@
 package my.practice.misc;
 
+import my.practice.lists.DoublyLinkedList;
+import my.practice.lists.ListNode;
+
+import java.util.*;
+
 /**
  * Created by kmishra on 8/7/2016.
  */
@@ -30,8 +35,30 @@ public class Misc {
         }
     }
 
+    public static int firstUnique(int[] a) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+        Map<Integer, ListNode> map = new HashMap<>();
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < a.length; i++) {
+            ListNode node = new ListNode(a[i]);
+            if (map.containsKey(node.val)) {
+                if (set.contains(node.val)) continue;
+                set.add(node.val);
+                ListNode toRemove = map.get(node.val);
+                dll.remove(toRemove);
+                map.remove(node.val);
+            } else if (!set.contains(node.val)) {
+                map.put(node.val, node);
+                dll.addLast(node);
+            }
+        }
+        return dll.head().val;
+    }
+
     public static void main(String[] args) {
         int[] a = {1,2,3,4,5};
         printProducts(a);
+        int[] b = {0,0,0,1,-1,1,4,2,2,3};
+        System.err.println(firstUnique(b));
     }
 }

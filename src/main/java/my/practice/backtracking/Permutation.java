@@ -7,15 +7,13 @@ public class Permutation {
 
     public static void printPermutations(char[] a, int lo, int hi) {
         if (lo == hi) {
-            for (char c: a) {
-                System.err.print(c);
-            }
+            for (char i : a) System.err.print(i + " ");
             System.err.println("");
         } else {
             for (int i = lo; i <= hi; i++) {
                 swap(a, lo, i);
                 printPermutations(a, lo + 1, hi);
-                swap(a, lo, i); //backtrack
+                swap(a, lo, i);
             }
         }
     }
@@ -26,7 +24,7 @@ public class Permutation {
     }
 
     public static void main(String[] args) {
-        char[] a = "abcd".toCharArray();
+        char[] a = "abc".toCharArray();
         printPermutations(a, 0, a.length - 1);
     }
 }

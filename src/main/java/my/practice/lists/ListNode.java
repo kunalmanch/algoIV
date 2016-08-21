@@ -16,6 +16,4 @@ public class ListNode {
     public String toString() {
         return String.valueOf(val);
     }
-
-
 }

@@ -8,20 +8,16 @@ public class Selection {
     public static void selectMax(int[] a, int lo, int hi, int k) {
         if (lo < hi) {
             int pivot = partition(a, lo, hi);
-            if (pivot == k) {
-                return;
-            } else if (pivot > k) {
-                selectMax(a, lo, pivot - 1, k);
-            } else {
-                selectMax(a, pivot + 1, hi, k);
-            }
+            if (pivot == k) return;
+            if (pivot > k) selectMax(a, lo, pivot - 1, k);
+            else selectMax(a, pivot + 1, hi, k);
         }
     }
 
     public static int partition(int[] a, int lo, int hi) {
         for (int j = lo; j <= hi; j++) {
             if (a[j] > a[hi]) {
-                swap(a, lo, j);
+                swap(a, j, lo);
                 lo++;
             }
         }

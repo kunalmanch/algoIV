@@ -19,21 +19,20 @@ public class SerializeBinaryTree {
         sb.append(',');
         while (!queue.isEmpty()) {
             BinaryTreeNode parent = queue.poll();
-            if (parent.left == null) {
-                sb.append("null,");
-            } else {
+            String s = "null,";
+            if (parent.left != null) {
+                s = parent.left.val + ",";
                 queue.add(parent.left);
-                sb.append(parent.left.val);
-                sb.append(',');
             }
-            if (parent.right == null) {
-                sb.append("null,");
-            } else {
-                sb.append(parent.right.val);
-                sb.append(',');
+            sb.append(s);
+            s = "null,";
+            if (parent.right != null) {
+                s = parent.right.val + ",";
+                queue.add(parent.right);
             }
+            sb.append(s);
         }
-        sb.setLength(sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 
@@ -44,12 +43,14 @@ public class SerializeBinaryTree {
         queue.add(root);
         for (int i = 0; !queue.isEmpty(); i++) {
             BinaryTreeNode parent = queue.poll();
-            if (2 * i + 1 < nodes.length) {
-                parent.left = nodes[2 * i + 1].equals("null") ? null : new BinaryTreeNode(Integer.parseInt(nodes[2 * i + 1]));
+            int l = 2 * i + 1;
+            int r = 2 * i + 2;
+            if (l < nodes.length) {
+                parent.left = nodes[l].equals("null") ? null : new BinaryTreeNode(Integer.parseInt(nodes[l]));
                 if (parent.left != null) queue.add(parent.left);
             }
-            if (2 * i + 2 < nodes.length) {
-                parent.right = nodes[2 * i + 2].equals("null") ? null : new BinaryTreeNode(Integer.parseInt(nodes[2 * i + 2]));
+            if (r < nodes.length) {
+                parent.right = nodes[r].equals("null") ? null : new BinaryTreeNode(Integer.parseInt(nodes[r]));
                 if (parent.right != null) queue.add(parent.right);
             }
         }

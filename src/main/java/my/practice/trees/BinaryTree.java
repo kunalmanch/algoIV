@@ -11,20 +11,20 @@ public class BinaryTree {
      * Given an array of values, create a balanced binary tree.
      */
     public static BinaryTreeNode createBalancedTree(int[] a) {
-        if (a == null || a.length == 0) throw new RuntimeException("array is empty");
-        Queue<BinaryTreeNode> queue = new ArrayDeque<>();
+        if (a == null || a.length == 0) return null;
         BinaryTreeNode root = new BinaryTreeNode(a[0]);
+        Queue<BinaryTreeNode> queue = new ArrayDeque<>();
         queue.add(root);
         for (int i = 0; !queue.isEmpty(); i++) {
             BinaryTreeNode parent = queue.poll();
-
-            if (2 * i + 1 < a.length) {
-                parent.left = new BinaryTreeNode(a[2 * i + 1]);
+            int l = 2 * i + 1;
+            int r = 2 * i + 2;
+            if (l < a.length) {
+                parent.left = new BinaryTreeNode(a[l]);
                 queue.add(parent.left);
             }
-
-            if (2 * i + 2 < a.length) {
-                parent.right = new BinaryTreeNode(a[2 * i + 2]);
+            if (r < a.length) {
+                parent.right = new BinaryTreeNode(a[r]);
                 queue.add(parent.right);
             }
         }

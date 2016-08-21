@@ -39,14 +39,12 @@ public class BinarySearch {
             if (lo == hi) return a[lo];
             if (hi - lo == 1) return Math.min(a[lo], a[hi]);
 
-            //means array is sorted in this part.
             if (a[lo] < a[hi]) return a[lo];
-
             int mid = lo + ((hi - lo) >> 1);
             if (a[mid] > a[hi]) lo = mid;
             else hi = mid;
         }
-        throw new RuntimeException("Error");
+        throw new RuntimeException("error");
     }
 
     /**
@@ -60,7 +58,7 @@ public class BinarySearch {
 
             int mid = lo + ((hi - lo) >> 1);
 
-            if (a[mid] > a[mid -1] && a[mid] > a[mid + 1]) return a[mid];
+            if (a[mid] > a[mid - 1] && a[mid] > a[mid + 1]) return a[mid];
 
             //all the numbers are in increasing order.
             if (a[mid - 1] < a[mid] && a[mid] < a[mid + 1]) lo = mid + 1;
@@ -70,7 +68,7 @@ public class BinarySearch {
     }
 
     /**
-     * count occurrences of a number in a sorted array.
+     * countLand occurrences of a number in a sorted array.
      */
     public static int countOccurrence(int[] a, int n) {
         int lo = 0, hi = a.length - 1;
@@ -120,6 +118,33 @@ public class BinarySearch {
         return r - l + 1;
     }
 
+    /**
+     * Find index where i = a[i]
+     */
+    public static int indexEqNum(int[] a) {
+        int lo = 0, hi = a.length - 1;
+        while (lo <= hi) {
+            if (lo == hi) {
+                if (a[lo] == lo) return lo;
+                break;
+            }
+
+            if (lo + 1 == hi) {
+                if (a[hi] == hi) return hi;
+                if (a[lo] == lo) return lo;
+                break;
+            }
+
+            int mid = lo + ((hi - lo) >> 1);
+
+            if (mid == a[mid]) return mid;
+
+            if (a[mid] > mid) hi = mid - 1;
+            else lo = mid + 1;
+        }
+        throw new RuntimeException("doesn't exist");
+    }
+
     public static void main(String[] args) {
         int[] a = {1,2,3,4,5,6,7};
         System.err.println(a[findLarger(a, 5)]);
@@ -129,5 +154,7 @@ public class BinarySearch {
         System.err.println(maxIncDec(incdec));
         int[] dup = {1,2,3,3,3,4};
         System.err.println(countOccurrence(dup, 3));
+        int[] arr = {-1, 0, 2, 4};
+        System.err.println(indexEqNum(arr));
     }
 }
