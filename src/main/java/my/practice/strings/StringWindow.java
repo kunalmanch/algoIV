@@ -6,40 +6,42 @@ package my.practice.strings;
 public class StringWindow {
 
     public static String minSubstring(String s, String t) {
-        int[] needToFind = new int[256];
-        int[] hasFound = new int[256];
+        char[] needsToFind = new char[256];
+        char[] hasToFind = new char[256];
 
         for (int i = 0; i < t.length(); i++) {
-            needToFind[t.charAt(i)]++;
+            needsToFind[t.charAt(i)]++;
         }
-        int count = 0,
+
+        int minLen = Integer.MAX_VALUE,
                 minBegin = -1,
                 minEnd = -1,
-                minLen = Integer.MAX_VALUE;
+                count = 0;
         for (int begin = 0, end = 0; end < s.length(); end++) {
-
-            if (needToFind[s.charAt(end)] == 0) continue;
-            hasFound[s.charAt(end)]++;
-            if (hasFound[s.charAt(end)] <= needToFind[s.charAt(end)]) {
+            if (needsToFind[s.charAt(end)] == 0) continue;
+            hasToFind[s.charAt(end)]++;
+            if (hasToFind[s.charAt(end)] <= needsToFind[s.charAt(end)]) {
                 count++;
             }
 
             if (count == t.length()) {
-                while (needToFind[s.charAt(begin)] == 0 || hasFound[s.charAt(begin)] > needToFind[s.charAt(begin)]) {
-                    if (hasFound[s.charAt(begin)] > needToFind[s.charAt(begin)]) {
-                        hasFound[s.charAt(begin)]--;
+                while (begin < needsToFind.length &&
+                        (needsToFind[s.charAt(begin)] == 0 || hasToFind[s.charAt(begin)] > needsToFind[s.charAt(begin)])) {
+                    if (hasToFind[s.charAt(begin)] > needsToFind[s.charAt(begin)]) {
+                        hasToFind[s.charAt(begin)]--;
                     }
                     begin++;
                 }
-
+                if (begin > end || end - begin + 1 > t.length()) continue;
                 if (end - begin + 1 < minLen) {
+                    minLen = end - begin + 1;
                     minBegin = begin;
                     minEnd = end;
-                    minLen = end - begin + 1;
                 }
             }
         }
-        return minBegin != -1 && minEnd != -1 ? s.substring(minBegin, minEnd + 1) : null;
+
+        return minBegin != -1 ? s.substring(minBegin, minEnd + 1) : null;
     }
 
     public static void main(String[] args) {

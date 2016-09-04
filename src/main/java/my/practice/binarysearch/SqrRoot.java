@@ -1,4 +1,4 @@
-package my.practice.misc;
+package my.practice.binarysearch;
 
 /**
  * Square Root related questions solved with binary search-esque approach.

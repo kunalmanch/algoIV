@@ -41,9 +41,30 @@ public class Sums {
         return minSum;
     }
 
+    public static void threeSum(int[] a, int t) {
+        Arrays.sort(a);
+        for (int i = 0; i < a.length; i++) {
+            int j = i + 1;
+            int k = a.length - 1;
+            while (j < k) {
+                int sum  = a[i] + a[j] + a[k];
+                if (sum == t) {
+                    System.err.println(t + " = " + a[i] + " + " + a[j] + " + " + a[k]);
+                }
+                if (sum < t) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] a = {1,2,3};
         twoSum(a, 5);
         System.err.println(closesTwoSum(a, 6));
+        int[] b = {2, 3, 1, -2, -1, 0, 2, -3, 0};
+        threeSum(b, 0);
     }
 }

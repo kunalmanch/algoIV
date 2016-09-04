@@ -15,7 +15,7 @@ public class EliminateSubString {
             boolean flag = false;
             if (sArr[i] == eArr[0]) {
                 int prevI = i;
-                for (int j = 0; j < eArr.length; j++, i++) {
+                for (int j = 0; j < eArr.length && i < sArr.length; j++, i++) {
                     flag = false;
                     if (sArr[i] != eArr[j]) break;
                     flag = true;
@@ -37,6 +37,6 @@ public class EliminateSubString {
     }
 
     public static void main(String[] args) {
-        System.err.println(eliminate("abcdefcdf", "cd"));
+        System.err.println(eliminate("abcdfcdf", "cd"));
     }
 }

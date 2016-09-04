@@ -58,6 +58,30 @@ public class Arrays {
         return maxElement;
     }
 
+    /**
+     * Given a sorted array, remove duplicates beyond the frequency of k.
+     */
+    public static int removeDuplicates2(int[] a, int k) {
+        int count = 0;
+        int pre = a[0];
+        for (int i = 1, j = 1, c = 1; i < a.length; i++) {
+            int curr = a[i];
+            if (pre == curr) {
+                if (c < k) {
+                    a[j++] = curr;
+                    c++;
+                } else {
+                    count++;
+                }
+            } else {
+                pre = curr;
+                a[j++] = curr;
+                c = 1;
+            }
+        }
+        return a.length - count;
+    }
+
     public static void main(String[] args) {
         int[] a = {1,2,3,4};
         int[] b = {1,2,3,3};
@@ -68,8 +92,11 @@ public class Arrays {
         a = new int[]{1,2,3};
         b = new int[]{3,3,5};
         System.err.println(findDuplicates(a, b));
-
         a = new int[]{1,2,3,3,3,4,4,4,4};
         System.err.println(maxOccuring(a));
+        int[] dup = {1,1,1,1,2,2,2,3,3};
+        int l = removeDuplicates2(dup, 3);
+        for (int i = 0; i < l; i++) System.err.print(dup[i] + " ");
+        System.err.println("");
     }
 }

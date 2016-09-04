@@ -9,27 +9,26 @@ import java.util.Deque;
 public class RelativeToAbsPath {
 
     public static String relativeToAbs(String path) {
-        String[] a = path.split("\\/");
+        String[] a = path.split("\\\\");
         Deque<String> stack = new ArrayDeque<>();
-        for (String p : a) {
-            if (p.equals(".") ||p.isEmpty()) continue;
-            if (p.equals("..")) {
+        for (String s : a) {
+            if (s.equals(".") || s.isEmpty()) continue;
+            if (s.equals("..")) {
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
             } else {
-                stack.push(p);
+                stack.push(s);
             }
         }
-
         String absPath = "";
         while (!stack.isEmpty()) {
-            absPath = "/" + stack.pop() + absPath;
+            absPath = "\\" + stack.pop() + absPath;
         }
         return absPath;
     }
 
     public static void main(String[] args) {
-        System.err.println(relativeToAbs("/windows/abs/../temp/new/.."));
+        System.err.println(relativeToAbs("\\windows\\abs\\..\\temp\\new\\.."));
     }
 }

@@ -7,6 +7,7 @@ public class BinaryTreeNode {
 
     public int val;
     public BinaryTreeNode left, right;
+    public int orderId;
 
     public BinaryTreeNode(int val) {
         this.val = val;

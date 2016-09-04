@@ -1,4 +1,4 @@
-package my.practice.arrays;
+package my.practice.sums;
 
 /**
  * Given a target find a sub-array whose sum is equal to target.

@@ -1,10 +1,7 @@
 package my.practice.trees;
 
-import javax.print.DocFlavor;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
 
 /**
  * Created by kmishra on 8/8/2016.

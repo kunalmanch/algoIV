@@ -20,7 +20,7 @@ public class KSmallestPairs {
             for (int i = 0; i < nums1.length; i++) {
                 if (idx[i] < nums2.length && nums1[i] + nums2[idx[i]] < min) {
                     t = i;
-                    min = nums1[i]+nums2[idx[i]];
+                    min = nums1[i] + nums2[idx[i]];
                 }
             }
             if (t != -1) {

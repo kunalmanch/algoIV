@@ -28,9 +28,37 @@ public class Isomorphic {
         return true;
     }
 
+    public static String encode(String s) {
+        int i = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < s.length(); j++) {
+            int code;
+            if (map.containsKey(s.charAt(j))) {
+                code = map.get(s.charAt(j));
+            } else {
+                code = i;
+                map.put(s.charAt(j), i++);
+            }
+            sb.append(code);
+        }
+        return sb.toString();
+    }
+
+    public static void allIsomorphic(String[] a, String p) {
+        String encodedP = encode(p);
+        for (String s : a) {
+            if (encode(s).equals(encodedP)) {
+                System.err.println(s);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         String a = "foo";
         String b = "app";
         System.err.println(isomorphic(a, b));
+        String[] arr = {"abb", "abc", "xyz", "xyy"};
+        allIsomorphic(arr, "foo");
     }
 }

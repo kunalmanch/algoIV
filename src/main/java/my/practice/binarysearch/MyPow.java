@@ -1,4 +1,4 @@
-package my.practice.misc;
+package my.practice.binarysearch;
 
 /**
  * Class to return pow(double a, int b).
@@ -19,14 +19,15 @@ public class MyPow {
 
     static double powNoRec(double x, int n) {
         if (n == 0) return 1;
+        boolean isNegative = n < 0;
+        n = Math.abs(n);
         int result = 1;
-        int m = Math.abs(n);
-        while (m > 0) {
-            if (m % 2 == 1) result *= x;
+        while (n != 0) {
+            if (n % 2 == 1) result *= x;
             x *= x;
-            m /= 2;
+            n /= 2;
         }
-        return n < 0 ? 1 / result : result;
+        return isNegative ? 1 / result : result;
     }
 
     public static void main(String[] args) {
