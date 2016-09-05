@@ -50,7 +50,7 @@ public class PostOrder {
 
             root = stack.pop();
 
-            if (stack.peek() == root.right) {
+            if (!stack.isEmpty() && stack.peek() == root.right) {
                 stack.pop();
                 stack.push(root);
                 root = root.right;
@@ -63,7 +63,7 @@ public class PostOrder {
     }
 
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,5,6,7};
+        int[] a = {1,2};
         BinaryTreeNode root = createBalancedTree(a);
         recursicePostOrder(root);
         System.err.println("======");
