@@ -16,6 +16,6 @@ public class SumN {
     }
 
     public static void main(String[] args) {
-        nSum(4, "");
+        nSum(7, "");
     }
 }
